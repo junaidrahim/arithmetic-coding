@@ -4,8 +4,4 @@
 
 #pragma once
 
-
-class Encoder {
-
-};
-
+class Encoder {};
