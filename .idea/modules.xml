@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/arithmeric-coding.iml" filepath="$PROJECT_DIR$/.idea/arithmeric-coding.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../arithmetic-coding/.idea/arithmeric-coding.iml" filepath="$PROJECT_DIR$/../arithmetic-coding/.idea/arithmeric-coding.iml" />
     </modules>
   </component>
 </project>
