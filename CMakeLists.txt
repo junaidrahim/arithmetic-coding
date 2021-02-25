@@ -10,6 +10,17 @@ include_directories(${GTK3_INCLUDE_DIRS})
 link_directories(${GTK3_LIBRARY_DIRS})
 add_definitions(${GTK3_CFLAGS_OTHER})
 
-add_executable(arithmetic_coding main.cpp src/FileReader.cpp include/FileReader.h src/Encoder.cpp include/Encoder.h src/Decoder.cpp include/Decoder.h src/FileWriter.cpp include/FileWriter.h)
+add_executable(
+        arithmetic_coding
+        main.cpp
+        src/FileReader.cpp
+        include/FileReader.h
+        src/Encoder.cpp
+        include/Encoder.h
+        src/Decoder.cpp
+        include/Decoder.h
+        src/FileWriter.cpp
+        include/FileWriter.h
+)
 
 target_link_libraries(arithmetic_coding ${GTK3_LIBRARIES})
