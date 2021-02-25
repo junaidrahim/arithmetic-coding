@@ -1,7 +1,7 @@
 #include <gtkmm.h>
 
 int main(int argc, char *argv[]) {
-	auto app = Gtk::Application::create("org.gtkmm.examples.base");
+	auto app = Gtk::Application::create("org.pdc");
 
 	Gtk::Window window;
 	window.set_title("Arithmetic Coding");

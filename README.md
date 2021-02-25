@@ -1,6 +1,6 @@
 # Arithmetic Coding
 
-PDC Group Project
+Implementation of Arithmetic Coding for Lossless Data Compression.
 
 ## Get Started
 
