@@ -3,5 +3,10 @@
 //
 
 #pragma once
+#include "common.h"
 
-class Encoder {};
+class Encoder {
+public:
+    FileData<uint16_t> encode(FileData<char> f);
+
+};

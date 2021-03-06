@@ -13,6 +13,7 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 add_executable(
         arithmetic_coding
         main.cpp
+        include/common.h
         src/FileReader.cpp
         include/FileReader.h
         src/Encoder.cpp
