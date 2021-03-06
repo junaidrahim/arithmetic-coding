@@ -18,14 +18,6 @@ The `.null` file will be a flat array of bytes with 3 sections in this very sequ
 
 
 
-An abstract representation of the binary data in the `.null` would look like this :
+An abstract representation of the binary data in a `.null` file would look like this :
 
 `100, [a, v, w, a, s,...], [0.06, 0.03, 0.04,...], [32143, 43412, 43542, .....]`
-
-
-
-
-
-
-
-
