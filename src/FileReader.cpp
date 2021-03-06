@@ -4,10 +4,20 @@
 
 #include "../include/FileReader.h"
 
-int main(int argc, char **argv) {
-	FileReader fr;
-	std::string charactersFilename(argv[1]);
-	std::string matchesFilename(argv[2]);
-//	std::vector<std::string> characters = fr.read_ascii_file(charactersFilename);
-//	std::vector<std::string> matches = fr.read_ascii_file(matchesFilename);
+
+FileData<char> FileReader::read_ascii_file(const std::string &filename) {
+	std::ifstream source;
+	source.open(filename);
+
+	std::string line, lines;
+
+	while (std::getline(source, line)) {
+		lines.append(line);
+		lines.push_back('\n');
+	}
+
+	FileData<char> fd;
+	fd.set_data(lines);
+	fd.set_probabilities(lines);
+	return fd;
 }
