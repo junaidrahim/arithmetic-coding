@@ -10,8 +10,13 @@
  {  
     for(int i=0; i<5; i++)
     {
-        if(scale*cumm_probability[ch+1]>num){
-        store ch
+        loop through cumm_probability map of characters
+        {
+            if(scale*cumm_probability[ch+1]>num) { 
+                store ch
+                break;    
+            }
+        }
         num = ( num - cumm_probability[ch] ) / probability[ch] ;
     }
  }
