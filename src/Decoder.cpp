@@ -10,7 +10,7 @@
  {  
     for(int i=0; i<5; i++)
     {
-        if(!scale*cumm_probability[ch+1]<num){
+        if(scale*cumm_probability[ch+1]>num){
         store ch
         num = ( num - cumm_probability[ch] ) / probability[ch] ;
     }
