@@ -39,11 +39,11 @@ uint16_t NumberLine::process(std::array<char, 5> &word) {
     /* by tathagata
     d=1; lower_limit=0; upper_limit=1;
     for(loops through the char in the 5char word selected){
+
         lower_limit += d * cumm_probability[ch];  //here cumm_probabitity and probability are in 0 to 1 range.
-        upper_limit = lower_limit + d * probability[ch];
-        d = upper_limit - lower_limit;
+        d = d*probability[ch]; 
     }
-    final coded word for 5char word selected = (upper_limit + lower_limit)/2 //upto as 
+    final coded word for 5char word selected = lower_limit + d/2;
     */
 
 }

@@ -3,3 +3,16 @@
 //
 
 #include "../include/Decoder.h"
+ 
+ /*
+ 
+ decode_for_5character_words(num)
+ {  
+    for(int i=0; i<5; i++)
+    {
+        if(!scale*cumm_probability[ch+1]<num){
+        store ch
+        num = ( num - cumm_probability[ch] ) / probability[ch] ;
+    }
+ }
+ */
