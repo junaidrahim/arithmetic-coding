@@ -1,5 +1,6 @@
 #include <gtkmm.h>
 #include "include/FileReader.h"
+#include "include/FileWriter.h"
 #include "include/common.hpp"
 
 int main(int argc, char *argv[]) {
@@ -11,4 +12,12 @@ int main(int argc, char *argv[]) {
 //	window.set_default_size(400, 400);
 //
 //	return app->run(window);
+
+// for (auto &i : fd.data){
+// 	std::cout << i;
+// }
+
+	FileWriter::write_ascii_file(fd, "../tests/testwritefile.txt");
+
+
 }
