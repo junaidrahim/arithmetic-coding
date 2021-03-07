@@ -4,11 +4,17 @@
 
 #pragma once
 
+#include <fstream>
+#include <iostream>
+#include <limits.h>
+#include <string>
+#include <vector>
+#include <algorithm>
 #include "common.hpp"
 
 class FileWriter {
 public :
-    void write_ascii_file(FileData<char> f, std::string file_path);
-    void write_bin_file(FileData<uint16_t> f, std::string file_path);
+    static void write_ascii_file(FileData<char> f, const std::string &file_path);
+    static void write_bin_file(FileData<uint16_t> f, const std::string &file_path);
 
 };
