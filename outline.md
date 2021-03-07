@@ -10,8 +10,8 @@ struct FileData {
 
     void set_probabilities(std::string text);
     void set_data(std::string text);
-    void set_probabilities(std::vector<char> c, std::vector<double> p);
-    void set_data(std::vector<T> d);
+    void get_probabilities(std::vector<char> c, std::vector<double> p);
+    void get_data(std::vector<T> d);
 };
 
 struct NumberLine {
