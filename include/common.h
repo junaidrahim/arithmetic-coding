@@ -25,6 +25,5 @@ struct NumberLine {
 	NumberLine(std::unordered_map<char, double>& probabilities);
 	std::array<char, 5> process(const uint16_t codeword);
     uint16_t process(std::array<char, 5>& word);
-
 };
 

@@ -17,15 +17,15 @@ int main(int argc, char *argv[]) {
 
 	NumberLine nL(m);
 
-	for(auto& x: nL.line) {
-		std::cout << "[ " << std::setw(5) << x.first << " ] " << x.second << std::endl;
-	}
-
-	auto app = Gtk::Application::create("org.pdc");
-
-	Gtk::Window window;
-	window.set_title("Arithmetic Coding");
-	window.set_default_size(400, 400);
-
-	return app->run(window);
+//	for(auto& x: nL.line) {
+//		std::cout << "[ " << std::setw(5) << x.first << " ] " << x.second << std::endl;
+//	}
+//
+//	auto app = Gtk::Application::create("org.pdc");
+//
+//	Gtk::Window window;
+//	window.set_title("Arithmetic Coding");
+//	window.set_default_size(400, 400);
+//
+//	return app->run(window);
 }

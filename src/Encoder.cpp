@@ -2,27 +2,54 @@
 // Created by junaid on 25/02/21.
 //
 
-#include "../include/Encoder.h"
+#include"../include/Encoder.h"
 #include "../include/common.h"
 #include <iostream>
 #include <vector>
 #include <algorithm>
 
 NumberLine::NumberLine(std::unordered_map<char, double> &probabilities) {
-	this->probabilities = probabilities;
+	std::vector<std::pair<char, double>> sorted_prob;
+
+	std::for_each(probabilities.begin(), probabilities.end(), [&](auto& p){
+		sorted_prob.push_back(p);
+	});
+
+	std::sort(sorted_prob.begin(), sorted_prob.end(), [](auto p1, auto p2){
+		return p1.second < p2.second;
+	});
+
+	std::for_each(sorted_prob.begin(), sorted_prob.end(), [&](auto p){
+		this->probabilities.insert(p);
+	});
 
 	uint16_t total = 0;
-    double cumm_total = 0;
+    double cumulative_total = 0;
 
 	for (auto &x : probabilities) {
-        this->cumm_probabilities[x.first] = cumm_total;
-        cumm_total += x.second;
+        this->cumm_probabilities[x.first] = cumulative_total;
+        cumulative_total += x.second;
 		total += x.second * 65535;
     	this->line.insert(std::pair<uint16_t, char>{total, x.first});
 	}
 
 	this->lower_limit = 0;
 	this->upper_limit = total;
+
+	std::cout << "Probabilities: \n";
+	for(auto& x: this->probabilities) {
+		std::cout << x.first << ' ' << x.second << '\n';
+	}
+
+	std::cout << "Cumulative Probabilities: \n";
+	for(auto& x: this->cumm_probabilities) {
+		std::cout << x.first << ' ' << x.second << '\n';
+	}
+
+	std::cout << "Line: \n";
+	for(auto& x: this->line) {
+		std::cout << x.first << ' ' << x.second << '\n';
+	}
 }
 
 uint16_t NumberLine::process(std::array<char, 5> &word) {
