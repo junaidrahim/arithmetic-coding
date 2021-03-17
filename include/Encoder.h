@@ -3,10 +3,9 @@
 //
 
 #pragma once
-#include "common.h"
+#include "FileData.hpp"
 
 class Encoder {
 public:
-    FileData<uint16_t> encode(FileData<char> f);
-
+    static FileData<uint8_t> encode(FileData<char> f);
 };

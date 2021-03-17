@@ -1,31 +1,28 @@
+#include "include/Decoder.h"
+#include "include/Encoder.h"
+#include "include/FileData.hpp"
+#include "include/FileReader.h"
+#include "include/FileWriter.h"
+
 #include <gtkmm.h>
-#include "include/common.h"
-#include <iostream>
-#include <string>
-#include <algorithm>
-#include <iomanip>
 
 int main(int argc, char *argv[]) {
-	const std::string s = "my name is junaid";
-	std::unordered_map<char, double> m;
 
-	for(char c : s) {
-		double count = std::count(s.begin(), s.end(), c);
-		double prob = count / s.size();
-		m[c] = prob;
-	}
+	FileData<char> fd = FileReader::read_ascii_file("../tests/smalltest.txt");
+	FileData<uint8_t> encoded = Encoder::encode(fd);
 
-	NumberLine nL(m);
+	FileData<char> t = Decoder::decode(encoded);
 
-//	for(auto& x: nL.line) {
-//		std::cout << "[ " << std::setw(5) << x.first << " ] " << x.second << std::endl;
-//	}
-//
-//	auto app = Gtk::Application::create("org.pdc");
-//
-//	Gtk::Window window;
-//	window.set_title("Arithmetic Coding");
-//	window.set_default_size(400, 400);
-//
-//	return app->run(window);
+	//	auto app = Gtk::Application::create("org.pdc");
+	//	Gtk::Window window;
+	//	window.set_title("Arithmetic Coding");
+	//	window.set_default_size(400, 400);
+	//
+	//	return app->run(window);
+
+	// for (auto &i : fd.data){
+	// 	std::cout << i;
+	// }
+
+	//	FileWriter::write_ascii_file(fd, "../tests/testwritefile.txt");
 }

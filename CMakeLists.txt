@@ -13,7 +13,6 @@ add_definitions(${GTK3_CFLAGS_OTHER})
 add_executable(
         arithmetic_coding
         main.cpp
-        include/common.h
         src/FileReader.cpp
         include/FileReader.h
         src/Encoder.cpp
@@ -22,6 +21,6 @@ add_executable(
         include/Decoder.h
         src/FileWriter.cpp
         include/FileWriter.h
-)
+        include/FileData.hpp src/NumberLine.cpp include/NumberLine.h)
 
 target_link_libraries(arithmetic_coding ${GTK3_LIBRARIES})
