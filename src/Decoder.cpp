@@ -7,15 +7,26 @@
 
 #include <iostream>
 
-FileData<char> Decoder::decode(FileData<uint8_t> f) {
+FileData<char> Decoder::decode(FileData<uint16_t> f) {
 	FileData<char> decompressed_text;
-	NumberLine nl(f.probabilities);
+	std::string bitstring;
 
-	auto x = nl.process(f.data[0]);
+	for(uint16_t x: f.data) {
+		std::bitset<16> bits(x);
+
+		for(int i=15; i>=0; i--){
+			if(bits[i])
+				bitstring.push_back('1');
+			else
+				bitstring.push_back('0');
+		}
+	}
+
+	NumberLine nl(f.probabilities);
+	std::vector<char> x = nl.process(bitstring);
 
 	for(char c: x)
 		std::cout << c;
-
 	std::cout << std::endl;
 
 	return decompressed_text;

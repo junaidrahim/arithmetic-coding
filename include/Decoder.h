@@ -7,6 +7,6 @@
 
 class Decoder {
 public:
-	static FileData<char> decode(FileData<uint8_t> f);
+	static FileData<char> decode(FileData<uint16_t> f);
 };
 

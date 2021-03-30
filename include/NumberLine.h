@@ -8,6 +8,7 @@
 #include <iostream>
 #include <bitset>
 #include <cmath>
+#include <string>
 
 struct NumberLine {
 	struct rescale_output {
@@ -26,9 +27,10 @@ struct NumberLine {
 	std::pair<double, double> search_line(char c);
 	char search_line(double ll);
 
-	uint8_t process(std::array<char, 5> &word);
-	std::array<char, 5> process(uint8_t &word);
+	std::string process(std::array<char, 5> &word);
+	std::vector<char> process(std::string& bitstring);
 
 	static rescale_output rescale(double ll, double ul);
-	static double bitsToDouble(uint8_t bits);
+	static double bitsToDouble(uint16_t bits);
+	static uint16_t bitstringToInt(std::string::iterator i);
 };
