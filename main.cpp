@@ -39,7 +39,6 @@ void decompressButtonHandler() {
 	FileData<uint16_t> fd = FileReader::read_bin_file(filePath);
 	FileData<char> decoded = Decoder::decode(fd);
 	FileWriter::write_ascii_file(decoded, folder + "/decompressed.txt");
-
 	outputLabel->set_text("decompressed.txt file written to" + folder);
 }
 
@@ -89,10 +88,6 @@ void on_app_activate() {
 }
 
 int main(int argc, char *argv[]) {
-	FileData<char> fd = FileReader::read_ascii_file("../tests/testfile.txt");
-	FileData<uint16_t> encoded = Encoder::encode(fd);
-	FileWriter::write_bin_file(encoded, "../tests/sample_bin.null");
-
 	app = Gtk::Application::create("pdc.arithmetic-coding");
 	app->signal_activate().connect([]() { on_app_activate(); });
 
