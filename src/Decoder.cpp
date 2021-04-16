@@ -26,8 +26,7 @@ FileData<char> Decoder::decode(FileData<uint16_t> f) {
 	std::vector<char> x = nl.process(bitstring);
 
 	for(char c: x)
-		std::cout << c;
-	std::cout << std::endl;
+		decompressed_text.data.push_back(c);
 
 	return decompressed_text;
 }

@@ -12,4 +12,5 @@
 class FileReader {
 public:
 	static FileData<char> read_ascii_file(const std::string &filename);
+	static FileData<uint16_t> read_bin_file(const std::string &filename);
 };

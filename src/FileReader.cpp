@@ -21,3 +21,8 @@ FileData<char> FileReader::read_ascii_file(const std::string &filename) {
 	fd.set_probabilities(lines);
 	return fd;
 }
+
+FileData<uint16_t> FileReader::read_bin_file(const std::string &filename) {
+	// @Rohan Implement this
+	return FileData<uint16_t>{};
+}
