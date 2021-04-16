@@ -3,8 +3,10 @@
 //
 
 #pragma once
+#include "FileData.hpp"
 
 class Decoder {
-
+public:
+	static FileData<char> decode(FileData<uint16_t> f);
 };
 

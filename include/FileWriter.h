@@ -5,12 +5,9 @@
 #pragma once
 
 #include <fstream>
-#include <iostream>
-#include <limits.h>
 #include <string>
-#include <vector>
-#include <algorithm>
-#include "common.hpp"
+
+#include "FileData.hpp"
 
 class FileWriter {
 public :

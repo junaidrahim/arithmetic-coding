@@ -3,5 +3,9 @@
 //
 
 #pragma once
+#include "FileData.hpp"
 
-class Encoder {};
+class Encoder {
+public:
+    static FileData<uint16_t> encode(FileData<char> f);
+};
