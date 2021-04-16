@@ -12,6 +12,7 @@ Gtk::FileChooserButton *aButton = nullptr;
 Gtk::FileChooserButton *nButton = nullptr;
 Gtk::Button *cButton = nullptr;
 Gtk::Button *dButton = nullptr;
+Gtk::Label *oLabel = nullptr;
 Glib::RefPtr<Gtk::Application> app;
 
 void on_button_clicked()
@@ -64,6 +65,9 @@ void on_app_activate()
 	refBuilder->get_widget<Gtk::Button>("decompress", dButton);
 	if (dButton){}
 
+	refBuilder->get_widget<Gtk::Label>("output", oLabel);
+	if (oLabel){}
+
 
 	// It's not possible to delete widgets after app->run() has returned.
 	// Delete the dialog with its child widgets before app->run() returns.
@@ -78,20 +82,9 @@ void on_app_activate()
 
 int main(int argc, char *argv[]) {
 
-	// FileData<char> fd = FileReader::read_ascii_file("../tests/testfile.txt");
-	// FileData<uint16_t> encoded = Encoder::encode(fd);
-
-	// FileData<char> t = Decoder::decode(encoded);
-
-//	auto builder = Gtk::Builder::create_from_file("ac-gui.glade", "MainWindow");
-//
-//	auto aButton = pWindow->get_widget<Gtk::FileChooserButton>("ASCII_input");
-//	auto nButton = pWindow->get_widget<Gtk::FileChooserButton>("NULL_input");
-//
-//	auto compressButton = pWindow->get_widget<Gtk::Button>("compress");
-//	auto decompressButton = pWindow->get_widget<Gtk::Button>("decompress");
-//
-//	auto oLabel = pWindow->get_widget<Gtk::Label>("output");
+	FileData<char> fd = FileReader::read_ascii_file("../tests/testfile.txt");
+	FileData<uint16_t> encoded = Encoder::encode(fd);
+	FileWriter::write_bin_file(encoded, "../tests/sample_bin.null");
 
 	app = Gtk::Application::create("org.gtkmm.example");
 
