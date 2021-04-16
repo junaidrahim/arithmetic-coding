@@ -11,9 +11,7 @@ int main(int argc, char *argv[]) {
 
 	FileData<char> fd = FileReader::read_ascii_file("../tests/testfile.txt");
 	FileData<uint16_t> encoded = Encoder::encode(fd);
-
-	FileData<char> t = Decoder::decode(encoded);
-
+	FileWriter::write_bin_file(encoded, "../tests/sample_bin.null");
 //	std::cout << fd.data.size() << std::endl;
 
 	//	auto app = Gtk::Application::create("org.pdc");
