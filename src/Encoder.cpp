@@ -5,6 +5,7 @@
 #include "../include/Encoder.h"
 #include "../include/NumberLine.h"
 
+#include <fstream>
 #include <vector>
 
 FileData<uint16_t> Encoder::encode(FileData<char> f) {
@@ -44,10 +45,16 @@ FileData<uint16_t> Encoder::encode(FileData<char> f) {
 
 	codewords.push_back(tag);
 
-	std::cout << bitstring.size() << ' ' << f.data.size() * 8 << std::endl;
-
 	FileData<uint16_t> encoded;
 	encoded.set_data(codewords);
 	encoded.set_probabilities(f.probabilities);
+
+	std::ofstream op;
+	op.open("../tests/encoder_output.txt");
+
+	for (auto i : encoded.data) {
+		op << i << std::endl;
+	}
+
 	return encoded;
 }

@@ -3,7 +3,7 @@
 //
 
 #include "../include/FileReader.h"
-
+#include <iostream>
 
 FileData<char> FileReader::read_ascii_file(const std::string &filename) {
 	std::ifstream source;
@@ -23,6 +23,40 @@ FileData<char> FileReader::read_ascii_file(const std::string &filename) {
 }
 
 FileData<uint16_t> FileReader::read_bin_file(const std::string &filename) {
-	// @Rohan Implement this
-	return FileData<uint16_t>{};
+	uint8_t n;
+	std::ifstream source;
+	source.open(filename);
+	source.read((char *)&n, sizeof n);
+
+	char ch_arr[int(n)];
+	double prob_arr[int(n)];
+
+	source.read((char *)&ch_arr, int(n));
+	source.read((char *)&prob_arr, sizeof prob_arr);
+
+	std::unordered_map<char, double> prob;
+	std::vector<uint16_t> data;
+
+	for (auto i = 0; i < int(n); i++) {
+		prob.insert({ch_arr[i], prob_arr[i]});
+	}
+
+	while (!source.eof()) {
+		uint16_t temp;
+		source.read((char *) &temp, sizeof temp);
+		if (source.eof()) break;
+		data.push_back(temp);
+	}
+
+	FileData<uint16_t> fd;
+	fd.set_probabilities(prob);
+	fd.set_data(data);
+
+	std::ofstream op;
+	op.open("../tests/reader_output.txt");
+
+	for (auto i : fd.data) {
+		op << i << std::endl;
+	}
+	return fd;
 }
