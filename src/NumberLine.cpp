@@ -7,8 +7,8 @@
 #define NO_RESCALE 'N'
 
 // Constructor
-NumberLine::NumberLine(std::unordered_map<char, double> &probabilities) {
-	std::for_each(probabilities.begin(), probabilities.end(), [&](auto &p) { this->sorted_probabilities.push_back(p); });
+NumberLine::NumberLine(std::unordered_map<char, double> &probabilities, std::vector<char> &order) {
+	std::for_each(order.begin(), order.end(), [&](char &c) { this->sorted_probabilities.emplace_back(std::make_pair(c, probabilities[c])); });
 
 	double total = 0;
 	for (auto &x : this->sorted_probabilities) {
@@ -40,7 +40,7 @@ std::pair<double, double> NumberLine::search_line(char c) {
 // Search for lower limit in the line and return the corresponding character
 char NumberLine::search_line(double ll) {
 	char c = this->line.lower_bound(ll)->second;
-	if(c==0) c=',';
+	if (c == 0) c = ',';
 	return c;
 }
 
@@ -81,13 +81,12 @@ std::string NumberLine::process(std::array<char, 5> &words) {
 }
 
 // Decode an 16 bit word to 5 ASCII Characters
-std::vector<char> NumberLine::process(std::string& bitstring) {
+std::vector<char> NumberLine::process(std::string &bitstring) {
 	std::vector<char> decompressed_text;
 	std::string::iterator bitstring_itr = bitstring.begin();
 	uint16_t curr_word = NumberLine::bitstringToInt(bitstring_itr);
 
-
-	while(bitstring_itr < bitstring.end()) {
+	while (bitstring_itr < bitstring.end()) {
 		for (int i = 0; i < 5; i++) {
 			double p = bitsToDouble(curr_word);
 
@@ -174,7 +173,7 @@ double NumberLine::bitsToDouble(uint16_t bits) {
 uint16_t NumberLine::bitstringToInt(std::string::iterator i) {
 	uint16_t val;
 
-	for(auto x=i; x<i+16; x++){
+	for (auto x = i; x < i + 16; x++) {
 		val = (val << 1) | *(x) - '0';
 	}
 

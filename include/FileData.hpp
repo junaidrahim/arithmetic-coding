@@ -6,11 +6,11 @@
 
 template <typename T> struct FileData {
 	std::unordered_map<char, double> probabilities;
+	std::vector<char> order;
 	std::vector<T> data;
 
 	void set_probabilities(std::string &text);
 	void set_data(std::string &text);
-	void set_probabilities(std::unordered_map<char, double> &p);
 	void set_data(std::vector<T> &d);
 };
 
@@ -41,18 +41,12 @@ template <typename T> void FileData<T>::set_probabilities(std::string &text) {
 
 	std::sort(sorted_probabilities.begin(), sorted_probabilities.end(), [](auto p1, auto p2) { return p1.second > p2.second; });
 
-	for (auto &it : sorted_probabilities)
+	this->probabilities.clear();
+	this->order.clear();
+	for (auto &it : sorted_probabilities) {
+		this->order.push_back(it.first);
 		this->probabilities.insert(it);
-}
-
-template <typename T> void FileData<T>::set_probabilities(std::unordered_map<char, double> &p) {
-	std::vector<std::pair<char, double>> sorted_probabilities;
-	std::for_each(p.begin(), p.end(), [&](auto &x) { sorted_probabilities.push_back(x); });
-
-	std::sort(sorted_probabilities.begin(), sorted_probabilities.end(), [](auto p1, auto p2) { return p1.second > p2.second; });
-
-	for (auto &it : sorted_probabilities)
-		this->probabilities.insert(it);
+	}
 }
 
 template <typename T> void FileData<T>::set_data(std::vector<T> &d) { this->data = d; }

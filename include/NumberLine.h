@@ -23,7 +23,7 @@ struct NumberLine {
 	double lower_limit;
 	double upper_limit;
 
-	NumberLine(std::unordered_map<char, double> &probabilities);
+	NumberLine(std::unordered_map<char, double> &probabilities, std::vector<char>& order);
 	std::pair<double, double> search_line(char c);
 	char search_line(double ll);
 

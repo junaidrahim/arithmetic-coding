@@ -19,6 +19,7 @@ FileData<char> FileReader::read_ascii_file(const std::string &filename) {
 	FileData<char> fd;
 	fd.set_data(lines);
 	fd.set_probabilities(lines);
+
 	return fd;
 }
 
@@ -35,10 +36,12 @@ FileData<uint16_t> FileReader::read_bin_file(const std::string &filename) {
 	source.read((char *)&prob_arr, sizeof prob_arr);
 
 	std::unordered_map<char, double> prob;
+	std::vector<char> order;
 	std::vector<uint16_t> data;
 
 	for (auto i = 0; i < int(n); i++) {
-		prob.insert({ch_arr[i], prob_arr[i]});
+		order.push_back(ch_arr[i]);
+		prob.insert({ch_arr[i], prob_arr[i]}); // this line is disrupting the order
 	}
 
 	while (!source.eof()) {
@@ -49,14 +52,9 @@ FileData<uint16_t> FileReader::read_bin_file(const std::string &filename) {
 	}
 
 	FileData<uint16_t> fd;
-	fd.set_probabilities(prob);
+	fd.order = order;
+	fd.probabilities = prob;
 	fd.set_data(data);
 
-	std::ofstream op;
-	op.open("../tests/reader_output.txt");
-
-	for (auto i : fd.data) {
-		op << i << std::endl;
-	}
 	return fd;
 }

@@ -3,6 +3,7 @@
 //
 
 #include "../include/FileWriter.h"
+#include <iostream>
 
 void FileWriter::write_ascii_file(FileData<char> f, const std::string &file_path) {
 	std::ofstream output_file(file_path, std::ios::out);
@@ -10,7 +11,7 @@ void FileWriter::write_ascii_file(FileData<char> f, const std::string &file_path
 	output_file.close();
 }
 
-void FileWriter::write_bin_file(FileData<uint16_t> f, const std::string &file_path) {
+void FileWriter::write_bin_file(FileData<uint16_t>& f, const std::string &file_path) {
 	std::ofstream output_file(file_path, std::ios::out | std::ios::binary);
 
 	const uint8_t p_size = f.probabilities.size();
@@ -21,15 +22,16 @@ void FileWriter::write_bin_file(FileData<uint16_t> f, const std::string &file_pa
 	uint16_t data_arr[d_size];
 
 	int in = 0;
-	for (auto &it : f.probabilities) {
-		ch_arr[in] = it.first;
-		prob_arr[in] = it.second;
+	for (char &c : f.order) {
+		ch_arr[in] = c;
+		prob_arr[in] = f.probabilities[c];
 		in++;
 	}
 
 	for (auto i = 0; i < d_size; i++) {
 		data_arr[i] = f.data[i];
 	}
+
 
 	output_file.write((char *)(&p_size), sizeof(p_size));
 	output_file.write((char *)(ch_arr), sizeof(ch_arr));

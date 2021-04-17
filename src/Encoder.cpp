@@ -8,7 +8,7 @@
 #include <fstream>
 #include <vector>
 
-FileData<uint16_t> Encoder::encode(FileData<char> f) {
+FileData<uint16_t> Encoder::encode(FileData<char>& f) {
 	std::string bitstring;
 	std::vector<uint16_t> codewords;
 
@@ -21,7 +21,7 @@ FileData<uint16_t> Encoder::encode(FileData<char> f) {
 				break;
 		}
 
-		NumberLine nl(f.probabilities);
+		NumberLine nl(f.probabilities, f.order);
 		bitstring.append(nl.process(char_window));
 	}
 
@@ -47,14 +47,8 @@ FileData<uint16_t> Encoder::encode(FileData<char> f) {
 
 	FileData<uint16_t> encoded;
 	encoded.set_data(codewords);
-	encoded.set_probabilities(f.probabilities);
-
-	std::ofstream op;
-	op.open("../tests/encoder_output.txt");
-
-	for (auto i : encoded.data) {
-		op << i << std::endl;
-	}
+	encoded.order = f.order;
+	encoded.probabilities = f.probabilities;
 
 	return encoded;
 }

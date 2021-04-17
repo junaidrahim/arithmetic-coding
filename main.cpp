@@ -15,7 +15,6 @@ Gtk::Button *decompressButton = nullptr;
 Gtk::Label *outputLabel = nullptr;
 Glib::RefPtr<Gtk::Application> app;
 
-
 void compressButtonHandler() {
 	std::string filePath = asciiFileButton->get_filename();
 
@@ -88,6 +87,10 @@ void on_app_activate() {
 }
 
 int main(int argc, char *argv[]) {
+//	FileData<char> fd = FileReader::read_ascii_file("../tests/testfile.txt");
+//	FileData<uint16_t> encoded = Encoder::encode(fd);
+//	FileData<char> t = Decoder::decode(encoded);
+
 	app = Gtk::Application::create("pdc.arithmetic-coding");
 	app->signal_activate().connect([]() { on_app_activate(); });
 

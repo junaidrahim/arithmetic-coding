@@ -22,11 +22,12 @@ FileData<char> Decoder::decode(FileData<uint16_t> f) {
 		}
 	}
 
-	NumberLine nl(f.probabilities);
+	NumberLine nl(f.probabilities, f.order);
 	std::vector<char> x = nl.process(bitstring);
 
-	for(char c: x)
+	for(char c: x) {
 		decompressed_text.data.push_back(c);
+	}
 
 	return decompressed_text;
 }

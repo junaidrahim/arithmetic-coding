@@ -7,5 +7,5 @@
 
 class Encoder {
 public:
-    static FileData<uint16_t> encode(FileData<char> f);
+    static FileData<uint16_t> encode(FileData<char>& f);
 };

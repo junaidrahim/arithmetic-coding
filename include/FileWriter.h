@@ -12,6 +12,6 @@
 class FileWriter {
 public :
     static void write_ascii_file(FileData<char> f, const std::string &file_path);
-    static void write_bin_file(FileData<uint16_t> f, const std::string &file_path);
+    static void write_bin_file(FileData<uint16_t> &f, const std::string &file_path);
 
 };
